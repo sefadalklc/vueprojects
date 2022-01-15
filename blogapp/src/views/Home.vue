@@ -24,6 +24,7 @@ export default {
     },
     setup(){
         const{makaleler,hatalar,makaleListesiniYukle}=makalelerGetir();
+        //console.log(makaleler);
         makaleListesiniYukle();
 
         return {makaleler,hatalar}
