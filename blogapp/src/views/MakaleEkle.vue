@@ -1,18 +1,47 @@
 <template>
   <div class="makale-ekle">
-<form >
+<form @submit.prevent="makaleEkle">
     <label>Makale Başlık :</label>
-    <input type="text" id="baslik" name="baslik" required/>
+    <input type="text" id="baslik" v-model="baslik" name="baslik" required/>
     <label>Makale İçerik : </label>
-    <input type="text" id="icerik" name="icerik" required/>
+    <input type="text" id="icerik"  v-model="icerik" name="icerik" required/>
     <button>Oluştur</button>
 </form>
   </div>
 </template>
 
 <script>
+import {ref} from 'vue'
+import{db} from '../firebase/config';
+import {useRouter} from 'vue-router';
 export default {
-    name:'MakaleEkler'
+   
+   setup(){
+       const baslik=ref('')
+       const icerik=ref('')
+
+       const router=useRouter();
+
+       const makaleEkle=async ()=>{
+           const makale={
+               baslik:baslik.value,
+               icerik:icerik.value,
+               olusturulmaTarihi:Date.now()
+           }
+
+          // console.log(makale);
+          const res=await db.collection('makaleler').add(makale).then(()=>{
+
+               router.push({name:"Home"})
+          }).catch((err)=>{
+              console.log(err.message);
+          })
+          
+         
+       }
+
+       return {baslik,icerik,makaleEkle}
+   }
 
 }
 </script>
