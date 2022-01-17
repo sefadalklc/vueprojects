@@ -12,7 +12,7 @@
 
 <script>
 import {ref} from 'vue'
-import{db} from '../firebase/config';
+import{db,timestamp} from '../firebase/config';
 import {useRouter} from 'vue-router';
 export default {
    
@@ -26,7 +26,7 @@ export default {
            const makale={
                baslik:baslik.value,
                icerik:icerik.value,
-               olusturulmaTarihi:Date.now()
+               olusturulmaTarihi:timestamp()
            }
 
           // console.log(makale);
