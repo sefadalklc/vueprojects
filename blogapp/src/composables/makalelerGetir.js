@@ -1,6 +1,7 @@
 import {ref} from 'vue'
 import {db} from'../firebase/config'
 
+
 const makalelerGetir=()=>{
  
     const makaleler=ref([])

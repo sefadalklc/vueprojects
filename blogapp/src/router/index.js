@@ -15,7 +15,7 @@ const routes = [
     component: MakaleEkle
   },
   {
-    path: '/maakle/:id',
+    path: '/makale/:id',
     name: 'Detay',
     component: MakaleDetay,
     props:true
